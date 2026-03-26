@@ -22,7 +22,7 @@ bun add @tokenring-ai/typescript
 
 - `@tokenring-ai/app` (0.2.0)
 - `@tokenring-ai/filesystem` (0.2.0)
-- `typescript` (^5.9.3)
+- `typescript` (^6.0.2)
 - `zod` (^4.3.6)
 
 ## Core Components
