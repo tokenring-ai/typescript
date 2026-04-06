@@ -10,6 +10,7 @@ const TS_EXTENSIONS = [".ts", ".tsx", ".mts", ".cts"];
 
 export default {
   name: packageJSON.name,
+  displayName: "TypeScript Tooling",
   version: packageJSON.version,
   description: packageJSON.description,
   install(app, config) {
