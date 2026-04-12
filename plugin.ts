@@ -2,11 +2,9 @@ import type {TokenRingPlugin} from "@tokenring-ai/app";
 import FileSystemService from "@tokenring-ai/filesystem/FileSystemService";
 import {z} from "zod";
 import packageJSON from "./package.json" with {type: "json"};
-import TypescriptFileValidator from "./TypescriptFileValidator.ts";
+import {TS_EXTENSIONS, TypescriptFileValidator} from "./TypescriptFileValidator.ts";
 
 const packageConfigSchema = z.object({});
-
-const TS_EXTENSIONS = [".ts", ".tsx", ".mts", ".cts"];
 
 export default {
   name: packageJSON.name,
@@ -15,8 +13,10 @@ export default {
   description: packageJSON.description,
   install(app, _config) {
     app.waitForService(FileSystemService, (fileSystemService) => {
-      for (const ext of TS_EXTENSIONS) {
-        fileSystemService.registerFileValidator(ext, TypescriptFileValidator);
+      const validator = new TypescriptFileValidator();
+
+      for (const ext in TS_EXTENSIONS) {
+        fileSystemService.registerFileValidator(ext, validator);
       }
     });
   },

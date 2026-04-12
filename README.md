@@ -32,11 +32,13 @@ bun add @tokenring-ai/typescript
 The core file validator implementation that checks TypeScript syntax errors.
 
 **Type Signature:**
+
 ```typescript
 type FileValidator = (filePath: string, content: string) => Promise<string | null>
 ```
 
 **Functionality:**
+
 - Accepts a file path and file content
 - Determines the appropriate TypeScript script kind based on file extension
 - Creates a TypeScript source file using the compiler API
@@ -44,6 +46,7 @@ type FileValidator = (filePath: string, content: string) => Promise<string | nul
 - Returns formatted error messages or `null` if no errors
 
 **Supported File Extensions:**
+
 - `.ts` - Standard TypeScript files
 - `.tsx` - TypeScript JSX files
 - `.mts` - TypeScript ES modules
@@ -54,6 +57,7 @@ type FileValidator = (filePath: string, content: string) => Promise<string | nul
 The plugin registers TypeScript file validators with the FileSystemService.
 
 **Plugin Configuration:**
+
 - No configuration options required
 - Automatically registers validators for all supported TypeScript extensions
 
@@ -154,11 +158,13 @@ await app.install(typescriptPlugin);
 The validator returns formatted error messages with location information:
 
 **Error Format:**
+
 ```
 line:column error error_message
 ```
 
 **Example:**
+
 ```
 1:10 error Type 'string' is not assignable to type 'number'.
 ```
@@ -215,12 +221,14 @@ pkg/typescript/
 ### Dependencies
 
 **Production Dependencies:**
+
 - `@tokenring-ai/app` - Base application framework
 - `@tokenring-ai/filesystem` - File management and validation
 - `typescript` - TypeScript compiler API
 - `zod` - Schema validation
 
 **Development Dependencies:**
+
 - `vitest` - Testing framework
 
 ## License
