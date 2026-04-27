@@ -1,1 +1,1 @@
-export { TypescriptFileValidator } from "./TypescriptFileValidator.ts";
+export { TypescriptService } from "./TypescriptService.ts";

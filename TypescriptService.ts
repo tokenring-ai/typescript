@@ -1,4 +1,5 @@
-import type { FileValidator } from "@tokenring-ai/filesystem/FileSystemService";
+import type { TokenRingService } from "@tokenring-ai/app/types";
+import type { FileValidationResult } from "@tokenring-ai/filesystem/util/runFileValidator";
 import ts from "typescript";
 
 export const TS_EXTENSIONS: Record<string, ts.ScriptKind> = {
@@ -8,8 +9,11 @@ export const TS_EXTENSIONS: Record<string, ts.ScriptKind> = {
   ".cts": ts.ScriptKind.TS,
 };
 
-export class TypescriptFileValidator implements FileValidator {
-  validateFile(filePath: string, content: string): string | null {
+export class TypescriptService implements TokenRingService {
+  readonly name = "TypescriptService";
+  readonly description = "A service that implements TypeScript validation and linting using the TypeScript compiler.";
+
+  validateFile(filePath: string, content: string): Required<FileValidationResult> {
     const ext = filePath.slice(filePath.lastIndexOf("."));
     const scriptKind = TS_EXTENSIONS[ext] ?? ts.ScriptKind.TS;
 
@@ -17,14 +21,17 @@ export class TypescriptFileValidator implements FileValidator {
     const diagnostics = ((sourceFile as any).parseDiagnostics as ts.Diagnostic[]) ?? [];
 
     const syntaxDiagnostics = diagnostics.filter(d => d.category === ts.DiagnosticCategory.Error);
-    if (syntaxDiagnostics.length === 0) return null;
+    if (syntaxDiagnostics.length === 0) return { valid: true, result: "No issues found." };
 
-    return syntaxDiagnostics
+
+    const result = syntaxDiagnostics
       .map(d => {
         const pos = d.file && d.start != null ? d.file.getLineAndCharacterOfPosition(d.start) : null;
         const loc = pos ? `${pos.line + 1}:${pos.character + 1}` : "?:?";
         return `${loc} error ${ts.flattenDiagnosticMessageText(d.messageText, " ")}`;
       })
       .join("\n");
+
+    return { valid: false, result };
   }
 }

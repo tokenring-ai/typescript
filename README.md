@@ -2,7 +2,9 @@
 
 ## Overview
 
-The `@tokenring-ai/typescript` package provides TypeScript language validation support for the TokenRing ecosystem. It integrates with the FileSystemService to register file validators for TypeScript files, enabling real-time syntax checking and error detection for TypeScript code.
+The `@tokenring-ai/typescript` package provides TypeScript language validation support for the TokenRing ecosystem. It
+integrates with the FileSystemService to register file validators for TypeScript files, enabling real-time syntax
+checking and error detection for TypeScript code.
 
 ## Key Features
 

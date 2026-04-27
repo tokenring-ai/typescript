@@ -1,8 +1,10 @@
 import type { TokenRingPlugin } from "@tokenring-ai/app";
 import FileSystemService from "@tokenring-ai/filesystem/FileSystemService";
+import { AgentLifecycleService } from "@tokenring-ai/lifecycle";
 import { z } from "zod";
 import packageJSON from "./package.json" with { type: "json" };
-import { TS_EXTENSIONS, TypescriptFileValidator } from "./TypescriptFileValidator.ts";
+import { TypescriptService } from "./TypescriptService.ts";
+import typescriptFileValidator from "./hooks/typescriptFileValidator.ts";
 
 const packageConfigSchema = z.object({});
 
@@ -13,11 +15,12 @@ export default {
   description: packageJSON.description,
   install(app, _config) {
     app.waitForService(FileSystemService, fileSystemService => {
-      const validator = new TypescriptFileValidator();
+      app.addServices(new TypescriptService());
 
-      for (const ext in TS_EXTENSIONS) {
-        fileSystemService.registerFileValidator(ext, validator);
-      }
+      // Register hooks with the lifecycle service
+      app.waitForService(AgentLifecycleService, lifecycleService => {
+        lifecycleService.addHooks(typescriptFileValidator);
+      });
     });
   },
   config: packageConfigSchema,
