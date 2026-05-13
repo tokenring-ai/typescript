@@ -13,7 +13,7 @@ const callbacks = [
       return agent.requireServiceByType(TypescriptService).validateFile(data.filePath, data.content);
     }
     return null;
-  })
+  }),
 ];
 export default {
   name,

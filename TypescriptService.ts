@@ -23,7 +23,6 @@ export class TypescriptService implements TokenRingService {
     const syntaxDiagnostics = diagnostics.filter(d => d.category === ts.DiagnosticCategory.Error);
     if (syntaxDiagnostics.length === 0) return { valid: true, result: "No issues found." };
 
-
     const result = syntaxDiagnostics
       .map(d => {
         const pos = d.file && d.start != null ? d.file.getLineAndCharacterOfPosition(d.start) : null;
