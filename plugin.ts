@@ -19,7 +19,6 @@ export default {
     app.waitForService(AgentLifecycleService, lifecycleService => {
       lifecycleService.addHooks(typescriptFileValidator);
     });
-
   },
   config: packageConfigSchema,
 } satisfies TokenRingPlugin<typeof packageConfigSchema>;
