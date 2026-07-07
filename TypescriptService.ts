@@ -18,7 +18,7 @@ export class TypescriptService implements TokenRingService {
     const scriptKind = TS_EXTENSIONS[ext] ?? ts.ScriptKind.TS;
 
     const sourceFile = ts.createSourceFile(filePath, content, ts.ScriptTarget.ESNext, true, scriptKind);
-    const diagnostics = ((sourceFile as any).parseDiagnostics as ts.Diagnostic[]) ?? [];
+    const diagnostics = ((sourceFile as any).parseDiagnostics ?? []) as ts.Diagnostic[];
 
     const syntaxDiagnostics = diagnostics.filter(d => d.category === ts.DiagnosticCategory.Error);
     if (syntaxDiagnostics.length === 0) return { valid: true, result: "No issues found." };
