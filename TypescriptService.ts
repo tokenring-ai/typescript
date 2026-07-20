@@ -1,6 +1,8 @@
 import type { TokenRingService } from "@tokenring-ai/app/types";
 import type { FileValidationResult } from "@tokenring-ai/filesystem/util/runFileValidator";
-import ts from "typescript";
+// TypeScript 7.0 ships no stable programmatic API; keep using the 6.x API package
+// for createSourceFile / parseDiagnostics until 7.1 provides a replacement.
+import ts from "@typescript/typescript6";
 
 export const TS_EXTENSIONS: Record<string, ts.ScriptKind> = {
   ".ts": ts.ScriptKind.TS,
