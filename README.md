@@ -31,7 +31,7 @@ bun add @tokenring-ai/typescript
 
 ### Development Dependencies
 
-- `vitest` (^4.1.1)
+- `bun test` - Testing framework
 
 ## Core Components
 
@@ -224,7 +224,7 @@ bun test
 The package uses Vitest for testing with the following configuration:
 
 ```typescript
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from 'bun:test';
 
 export default defineConfig({
   test: {
@@ -256,7 +256,6 @@ pkg/typescript/
 ├── hooks/
 │   └── typescriptFileValidator.ts  # Lifecycle hook for file validation
 ├── package.json                    # Package configuration
-├── vitest.config.ts               # Test configuration
 ├── LICENSE                         # MIT License
 └── README.md                       # This documentation
 ```
@@ -281,7 +280,7 @@ export { TypescriptService } from "./TypescriptService.ts";
 
 **Development Dependencies:**
 
-- `vitest` - Testing framework
+- `bun test` - Testing framework
 
 ## License
 
