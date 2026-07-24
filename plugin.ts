@@ -20,5 +20,5 @@ export default {
       lifecycleService.addHooks(typescriptFileValidator);
     });
   },
-  config: packageConfigSchema,
+  configSchema: packageConfigSchema,
 } satisfies TokenRingPlugin<typeof packageConfigSchema>;
