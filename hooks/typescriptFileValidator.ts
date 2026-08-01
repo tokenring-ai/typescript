@@ -10,7 +10,7 @@ const description = "Automatically validates written typescript files using the 
 const callbacks = [
   new HookCallback(FileValidatonAfterFileWrite, (data, agent) => {
     if (Object.hasOwn(TS_EXTENSIONS, data.fileExtension)) {
-      return agent.requireServiceByType(TypescriptService).validateFile(data.filePath, data.content);
+      return agent.requireService(TypescriptService).validateFile(data.filePath, data.content);
     }
     return null;
   }),

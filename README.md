@@ -206,7 +206,7 @@ const fileService = await app.getService(FileSystemService);
 
 ### With FileSystemService
 
-The plugin adds the TypescriptService to the application, which is then accessed by the lifecycle hook via `agent.requireServiceByType(TypescriptService)`:
+The plugin adds the TypescriptService to the application, which is then accessed by the lifecycle hook via `agent.requireService(TypescriptService)`:
 
 ```typescript
 app.addServices(new TypescriptService());

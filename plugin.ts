@@ -10,7 +10,7 @@ export default {
   version: packageJSON.version,
   description: packageJSON.description,
   install(app) {
-    app.addServices(new TypescriptService());
+    app.addService(new TypescriptService());
 
     // Register hooks with the lifecycle service
     app.waitForService(AgentLifecycleService, lifecycleService => {
