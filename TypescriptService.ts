@@ -15,7 +15,7 @@ export class TypescriptService implements TokenRingService {
   readonly name = "TypescriptService";
   readonly description = "A service that implements TypeScript validation and linting using the TypeScript compiler.";
 
-  validateFile(filePath: string, content: string): Required<FileValidationResult> {
+  validateFile(filePath: string, content: string): NonNullable<FileValidationResult> {
     const ext = filePath.slice(filePath.lastIndexOf("."));
     const scriptKind = TS_EXTENSIONS[ext] ?? ts.ScriptKind.TS;
 
